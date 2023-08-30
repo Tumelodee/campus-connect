@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Menu, Divider, Provider } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
 
-
-const HomePage = () => {
+const HomePage = ({navigation}) => {
+  
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const openMenu = () => setMenuVisible(true);
   const closeMenu = () => setMenuVisible(false);
 
   return (
+    
     <Provider>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={openMenu}>
-            <FontAwesome5 name="bars" size={24} color="blue" style={styles.menuIcon} />
+            <FontAwesome5 name="bars" size={24} color="black" style={styles.menuIcon} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>campus-Connect</Text>
         </View>
@@ -33,7 +35,7 @@ const HomePage = () => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.section}>
-          <FontAwesome5 name="shopping-cart" size={24} color="purple" />
+          <FontAwesome5 name="shopping-cart" size={24} color="grey" />
           <Text style={styles.sectionTitle}>Buy</Text>
           {/* Add content for Buy section */}
         </TouchableOpacity>
@@ -54,13 +56,13 @@ const HomePage = () => {
           visible={isMenuVisible}
           onDismiss={closeMenu}
           anchor={
-            <FontAwesome5 name="bars" size={24} color="black" style={styles.menuIcon} />
+            <FontAwesome5 name="" size={24} color="black" style={styles.menuIcon} />
             
           }
         >
           <Menu.Item
             icon="cog"
-            title="daniel"
+            title="messages"
             onPress={() => {
               closeMenu();
             }}
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    
   },
   header: {
     flexDirection: 'row',

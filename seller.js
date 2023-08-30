@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 
 const sellers = [
   { id: '1', name: 'Furniture', details: 'Karabo' },
@@ -14,7 +13,10 @@ const SellersScreen = () => {
 
   const renderSellerItem = ({ item }) => (
     <TouchableOpacity
-      style={styles.sellerItem}
+      style={[
+        styles.sellerItem,
+        selectedSeller === item && styles.selectedSellerItem,
+      ]}
       onPress={() => setSelectedSeller(item)}
     >
       <Text style={styles.sellerName}>{item.name}</Text>
@@ -22,9 +24,8 @@ const SellersScreen = () => {
   );
 
   return (
-   
     <View style={styles.container}>
-      <Text style={styles.title}> catergory</Text>
+      <Text style={styles.title}>Sellers</Text>
       <FlatList
         data={sellers}
         renderItem={renderSellerItem}
@@ -32,7 +33,7 @@ const SellersScreen = () => {
       />
       {selectedSeller && (
         <View style={styles.detailsContainer}>
-          <Text style={styles.detailsTitle}>sellers</Text>
+          <Text style={styles.detailsTitle}>Seller Details</Text>
           <Text style={styles.detailsText}>{selectedSeller.details}</Text>
         </View>
       )}
@@ -56,6 +57,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+  },
+  selectedSellerItem: {
+    backgroundColor: '#f0f0f0',
   },
   sellerName: {
     fontSize: 18,
